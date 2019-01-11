@@ -56,17 +56,12 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,
     NgbDropdownModule,
-    RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    RouterModule.forRoot(appRoutes)
   ],
-  providers: [
-    AuthService,
-    AuthGuard,
-    AdminAuthGuard,
-    UserService
-  ],
+  providers: [ ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

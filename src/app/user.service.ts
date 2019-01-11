@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { AppUser } from './models/app-user';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,14 +15,14 @@ export class UserService {
 
   save(user: firebase.User) {
     
-    this.usersCollection.doc( user.uid )
+    return this.usersCollection.doc( user.uid )
       .set({
         name: user.displayName,
         email: user.email
       }, { merge: true });
   }
 
-  get(uid: string): Observable<AppUser> {
-    return this.usersCollection.doc<AppUser>(uid).valueChanges();
+  get(uid: string): AngularFirestoreDocument<AppUser> {
+    return this.usersCollection.doc<AppUser>(uid);
   }
 }
